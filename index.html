@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Art Display</title>
+  <style>
+    html, body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+      margin: auto;
+      background: #111;
+      border: 2px solid #555;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="art" width="300" height="300"></canvas>
+  <script>
+    const canvas = document.getElementById("art");
+    const ctx = canvas.getContext("2d");
+
+    function randomColor() {
+      return `hsl(${Math.random() * 360}, 100%, 50%)`;
+    }
+
+    function drawArt() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < 50; i++) {
+        ctx.fillStyle = randomColor();
+        ctx.beginPath();
+        ctx.arc(
+          Math.random() * canvas.width,
+          Math.random() * canvas.height,
+          Math.random() * 30 + 5,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+      }
+    }
+
+    canvas.addEventListener("click", drawArt);
+    drawArt();
+  </script>
+</body>
+</html>
